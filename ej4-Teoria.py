@@ -26,7 +26,7 @@ def entropiaEquivocacion(prob_independientes,array):
     while(i < len(array[0])):
         j=0
         while(j < len(array[0])):
-            entropia-=prob_independientes[i]*(1/array[i][j])*math.log2(1/array[i][j])
+            entropia+=-(prob_independientes[i]*(1/array[i][j])*math.log2(1/array[i][j]))
             j+=1
         i+=1
 
@@ -39,13 +39,17 @@ def info_mutua(prob_independientes,array):
 
     return (entropiaFuente - equivocacion)
 
-def canalUniforme(capacidad_max, array):
+def canalUniforme(array):
     i = 0
     prob_independientes = []
     while (i < len(array[0])):
         prob_independientes.append(1 / len(array[0]))
         i+=1
+    
+    entropiaFuente=entropiaF(prob_independientes,array)
+    equivocacion=entropiaEquivocacion(prob_independientes,array)
 
+    print("Capacidad del canal: ",(entropiaFuente-equivocacion))
     return prob_independientes
 
 
@@ -65,7 +69,8 @@ def canalNoUniforme2(capacidad_max, array):
             prob_max[indexA]=aux[indexA]
             prob_max[indexB]=aux[indexB]
         a+=0.01
-
+    
+    print("Capacidad del canal: ",info_mutua(prob_max,array))
     return prob_max
 
 def canalNoUniforme3(capacidad_max, array):
@@ -92,6 +97,7 @@ def canalNoUniforme3(capacidad_max, array):
             a+=0.01
         b+=0.01
 
+    print("Capacidad del canal: ",info_mutua(prob_max,array))
     return prob_max
 
 def canalNoUniforme4(capacidad_max, array):
@@ -123,7 +129,8 @@ def canalNoUniforme4(capacidad_max, array):
                 a+=0.01
             b+=0.01
         c+=0.01
-
+    
+    print("Capacidad del canal: ",info_mutua(prob_max,array))
     return prob_max
 
 def main():
@@ -143,7 +150,7 @@ def main():
     capacidad_max = math.log2(n)
 
     if (r == 1):
-        prob_independientes = canalUniforme(capacidad_max, prob_condicionales)
+        prob_independientes = canalUniforme(prob_condicionales)
         i = 0
 
     else:
