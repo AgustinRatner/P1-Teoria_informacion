@@ -7,7 +7,7 @@ def entropiaF(prob_independientes,array):
     while(i < len(array[0])):
         j=0
         while(j < len(array[0])):
-            prob_salida[i]+=prob_independientes[j]*(1/array[j][i])
+            prob_salida[i]+=prob_independientes[j]*array[j][i]
             j+=1
         i+=1
 
@@ -26,7 +26,7 @@ def entropiaEquivocacion(prob_independientes,array):
     while(i < len(array[0])):
         j=0
         while(j < len(array[0])):
-            entropia+=-(prob_independientes[i]*(1/array[i][j])*math.log2(1/array[i][j]))
+            entropia+=prob_independientes[i]*array[i][j]*math.log2(1/array[i][j])
             j+=1
         i+=1
 
@@ -45,13 +45,9 @@ def canalUniforme(array):
     while (i < len(array[0])):
         prob_independientes.append(1 / len(array[0]))
         i+=1
-    
-    entropiaFuente=entropiaF(prob_independientes,array)
-    equivocacion=entropiaEquivocacion(prob_independientes,array)
 
-    print("Capacidad del canal: ",(entropiaFuente-equivocacion))
+    print("Capacidad del canal: ",info_mutua(prob_independientes,array))
     return prob_independientes
-
 
 def canalNoUniforme2(capacidad_max, array):
     prob_max=[0] * 2
@@ -60,8 +56,8 @@ def canalNoUniforme2(capacidad_max, array):
     indexA=0
     indexB=1
 
-    a=0.01
-    while((1-a) >= 0):
+    a=0
+    while(1-a >= 0):
         aux[indexA]=a
         aux[indexB]=1-a
         if((capacidad_max - info_mutua(aux,array)) < (capacidad_max - max)):
@@ -82,10 +78,10 @@ def canalNoUniforme3(capacidad_max, array):
     indexC=2
 
 
-    b=0.01
+    b=0
     while(b < 1):
-        a=0.01
-        while((1-a-b) > 0):
+        a=0
+        while(1-a-b >= 0):
             aux[indexA]=a
             aux[indexB]=b
             aux[indexC]=1-a-b
@@ -110,12 +106,12 @@ def canalNoUniforme4(capacidad_max, array):
     indexD=3
 
 
-    c=0.01
+    c=0
     while(c < 1):
-        b=0.01
+        b=0
         while(b < 1):
-            a=0.01
-            while((1-a-b-c) > 0):
+            a=0
+            while(1-a-b-c >= 0):
                 aux[indexA]=a
                 aux[indexB]=b
                 aux[indexC]=c
