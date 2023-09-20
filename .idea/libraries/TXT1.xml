@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="TXT1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Ej3_CalculoEntropia/src/data/TXT.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

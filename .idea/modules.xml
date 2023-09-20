@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Ej3_CalculoEntropia/Ej3_CalculoEntropia.iml" filepath="$PROJECT_DIR$/Ej3_CalculoEntropia/Ej3_CalculoEntropia.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/P1-Teoria_Informacion.iml" filepath="$PROJECT_DIR$/.idea/P1-Teoria_Informacion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lectura_archivos/lectura_archivos.iml" filepath="$PROJECT_DIR$/lectura_archivos/lectura_archivos.iml" />
+    </modules>
+  </component>
+</project>
